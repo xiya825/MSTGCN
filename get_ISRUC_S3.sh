@@ -8,7 +8,7 @@ do
     wget http://dataset.isr.uc.pt/ISRUC_Sleep/subgroupIII/$s.rar
     unrar x $s.rar
 done
-echo 'Download Data to "./data/ISRUC_S3/Data" complete.'
+echo 'Download Data to "./data/ISRUC_S3/RawData" complete.'
 
 cd ./data/ISRUC_S3/ExtractedChannels
 for s in {1..10}:
