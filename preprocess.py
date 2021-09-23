@@ -52,6 +52,8 @@ for sub in range(1, 11):
     print('Subject', sub, ':', label.shape, psg.shape)
     assert len(label) == len(psg)
 
+    # in ISRUC, 0-Wake, 1-N1, 2-N2, 3-N3, 5-REM
+    label[label==5] = 4 # make 4 correspond to REM
     fold_label.append(np.eye(5)[label])
     fold_psg.append(psg)
     fold_len.append(len(label))
