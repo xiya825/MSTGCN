@@ -53,15 +53,15 @@ for sub in range(1, 11):
     assert len(label) == len(psg)
 
     # in ISRUC, 0-Wake, 1-N1, 2-N2, 3-N3, 5-REM
-    label[label==5] = 4 # make 4 correspond to REM
+    label[label==5] = 4  # make 4 correspond to REM
     fold_label.append(np.eye(5)[label])
     fold_psg.append(psg)
     fold_len.append(len(label))
 print('Preprocess over.')
 
-np.savez(path.join(path_output, 'ISRUC_S3.npz'), {
-    'Fold_data': fold_psg,
-    'Fold_label': fold_label,
-    'Fold_len': fold_len
-})
+np.savez(path.join(path_output, 'ISRUC_S3.npz'),
+    Fold_data = fold_psg,
+    Fold_label = fold_label,
+    Fold_len = fold_len
+)
 print('Saved to', path.join(path_output, 'ISRUC_S3.npz'))
