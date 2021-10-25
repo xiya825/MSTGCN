@@ -13,16 +13,15 @@ These are source code and experimental setup for the ISRUC-S3 dataset.
 If you find this useful, please cite our work as follows:
 
 ```latex
-@INPROCEEDINGS{9176741,
-  author={Supratak, Akara and Guo, Yike},
-  booktitle={2020 42nd Annual International Conference of the IEEE Engineering in Medicine   Biology Society (EMBC)}, 
-  title={TinySleepNet: An Efficient Deep Learning Model for Sleep Stage Scoring based on Raw Single-Channel EEG}, 
-  year={2020},
-  volume={},
+@ARTICLE{9530406,
+  author={Jia, Ziyu and Lin, Youfang and Wang, Jing and Ning, Xiaojun and He, Yuanlai and Zhou, Ronghao and Zhou, Yuhan and Lehman, Li-wei H.},
+  journal={IEEE Transactions on Neural Systems and Rehabilitation Engineering}, 
+  title={Multi-View Spatial-Temporal Graph Convolutional Networks With Domain Generalization for Sleep Stage Classification}, 
+  year={2021},
+  volume={29},
   number={},
-  pages={641-644},
-  doi={10.1109/EMBC44109.2020.9176741}
-}
+  pages={1977-1986},
+  doi={10.1109/TNSRE.2021.3110665}}
 ```
 
 
