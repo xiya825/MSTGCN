@@ -6,9 +6,10 @@ from keras import models
 from keras.layers import Layer
 from keras.layers.core import Dropout, Lambda
 from tensorflow.python.framework import ops
-from model.FeatureNet import build_FeatureNet
 
 '''
+Model code of MSTGCN.
+--------
 Model input:  (*, T, V, F)
     T: num_of_timesteps
     V: num_of_vertices
@@ -19,6 +20,7 @@ Model output: (*, 5)
 
 ################################################################################################
 ################################################################################################
+# Attention Layers
 
 class TemporalAttention(Layer):
     '''
@@ -144,6 +146,7 @@ class SpatialAttention(Layer):
 
 ################################################################################################
 ################################################################################################
+# Adaptive Graph Learning Layer
 
 def diff_loss(diff, S):
     '''
@@ -203,7 +206,7 @@ class Graph_Learn(Layer):
             # shape: (N,V,V)
             diff = tf.transpose(tf.broadcast_to(xt, [V,N,V,F]), perm=[2,1,0,3]) - xt
             # shape: (N,V,V)
-            tmpS = K.exp(K.relu(K.reshape(K.dot(tf.transpose(K.abs(diff), perm=[1,0,2,3]), self.a), [N,V,V])))
+            tmpS = K.exp(K.reshape(K.dot(tf.transpose(K.abs(diff), perm=[1,0,2,3]), self.a), [N,V,V]))
             # normalization
             S = tmpS / tf.transpose(tf.broadcast_to(K.sum(tmpS, axis=1), [V,N,V]), perm=[1,2,0])
 
@@ -219,8 +222,10 @@ class Graph_Learn(Layer):
         # shape: (n, num_of_vertices,num_of_vertices, num_of_vertices)
         return (input_shape[0],input_shape[1],input_shape[2],input_shape[2])
 
+
 ################################################################################################
 ################################################################################################
+# GCN layers
 
 class cheb_conv_with_Att_GL(Layer):
     '''
@@ -346,6 +351,7 @@ class cheb_conv_with_Att_static(Layer):
 
 ################################################################################################
 ################################################################################################
+# Some operations
 
 def reshape_dot(x):
     #Input:  [x,TAtt]
@@ -367,6 +373,7 @@ def LayerNorm(x):
 
 ################################################################################################
 ################################################################################################
+# Gradient Reverse Layer
 
 def reverse_gradient(X, hp_lambda):
     """Flips the sign of the incoming gradient during training."""
@@ -416,6 +423,7 @@ class GradientReversal(Layer):
 
 ################################################################################################
 ################################################################################################
+# MSTGCN Block
 
 def MSTGCN_Block(x, k, num_of_chev_filters, num_of_time_filters, time_conv_strides,
                  cheb_polynomials, time_conv_kernel, GLalpha, i=0):
@@ -462,6 +470,7 @@ def MSTGCN_Block(x, k, num_of_chev_filters, num_of_time_filters, time_conv_strid
 
 ################################################################################################
 ################################################################################################
+# MSTGCN
 
 def build_MSTGCN(k, num_of_chev_filters, num_of_time_filters, time_conv_strides, cheb_polynomials,
                  time_conv_kernel, sample_shape, num_block, dense_size, opt, GLalpha,
