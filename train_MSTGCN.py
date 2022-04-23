@@ -80,8 +80,8 @@ Fold_Num   = ReadList['Fold_len']    # Num of samples of each fold
 # ## 2.2. Read adjacency matrix
 # Prepare Chebyshev polynomial of G_DC
 Dis_Conn = np.load(Path['disM'], allow_pickle=True)  # shape:[V,V]
-L_DC = scaled_Laplacian(Dis_Conn)                    # Calculate laplacian matrix
-cheb_poly_DC = cheb_polynomial(L_DC, cheb_k)         # K-order Chebyshev polynomial
+L_DC = scaled_Laplacian(Dis_Conn)                    # 归一化拉普拉斯矩阵
+cheb_poly_DC = cheb_polynomial(L_DC, cheb_k)         # k阶切比雪夫多项式
 
 print("Read data successfully")
 Fold_Num_c  = Fold_Num + 1 - context
