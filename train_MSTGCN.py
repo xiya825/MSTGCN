@@ -84,7 +84,7 @@ L_DC = scaled_Laplacian(Dis_Conn)                    # 归一化拉普拉斯矩�
 cheb_poly_DC = cheb_polynomial(L_DC, cheb_k)         # k阶切比雪夫多项式
 
 print("Read data successfully")
-Fold_Num_c  = Fold_Num + 1 - context
+Fold_Num_c  = Fold_Num + 1 - context                 #？？
 print('Number of samples: ',np.sum(Fold_Num), '(with context:', np.sum(Fold_Num_c), ')')
 
 # ## 2.3. Build kFoldGenerator or DominGenerator
