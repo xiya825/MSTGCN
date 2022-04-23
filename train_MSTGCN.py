@@ -91,9 +91,9 @@ print('Number of samples: ',np.sum(Fold_Num), '(with context:', np.sum(Fold_Num_
 Dom_Generator = DominGenerator(Fold_Num_c)
 
 
-# # 3. Model training (cross validation)
+# # 3. 模型训练 (交叉验证)
 
-# k-fold cross validation
+# K折交叉验证
 all_scores = []
 for i in range(fold):
     print(128*'_')
